@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/assets/ico/favicon.png">
+
+    <title>Pennyminder - We build and host web applications for Credit Unions</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+      }
+      .navbar-brand {
+        padding: 12px 0 8px;
+        margin-right:20px;
+      }
+      .navbar-brand img {
+        height:60px;
+      } 
+      .blog-title h2 {
+	    font-size: 24px;
+  	    line-height: 30px;
+      }
+
+      #headerwrap h2 {
+  	    margin-top: 15px;
+	    color: white;
+	    font-size: 22px;
+	    font-weight: 200;
+	    letter-spacing: 2px;
+	    text-align: left;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/img/logo.png" /></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav pull-right" style="margin-top:20px;">
+
+            
+              <li><a href="/index.html">Home</a></li>
+            
+
+            
+              <li><a href="/cashbook.html">Cashbook</a></li>
+            
+
+            
+              <li><a href="/about.html">About</a></li>
+            
+
+            
+              <li class="active"><a href="/blog/">Blog</a></li>
+            
+
+            
+              <li><a href="/contact.html">Contact</a></li>
+            
+
+
+<!--            <li><a href="http://github.com/pennyminder" style="" class=""></a></li>-->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    
+  
+
+
+<div class="container">
+  <div class="row main-blog">
+    <div class="col-lg-8">    
+      
+  <img class="img-responsive" src="/img/41561977-CashbookInteractions_(7)_(1).png" alt="">
+
+<div class="row">
+  <div class="col-md-3 blog-date">
+	<p>
+	  <b>Published</b><br/>
+	  28 May 2012
+	</p>
+  </div><!-- /col3 Blog Date -->
+  <div class="col-md-9 blog-title">
+	<h2>Cashbook Security Overview</h2>
+  </div><!-- /col9 Blog Title -->
+</div><!-- /row -->
+
+<div class="col-md-9 col-md-offset-3 blog-post">
+  <h3>Introduction</h3>
+
+<p>In this document we will describe the security of Cashbook and the steps we have taken to ensure the privacy of member data is protected and the integrity of the core banking system is protected.</p>
+
+<ul>
+<li>Cashbook The PFM application</li>
+<li>Juno: Single sign on authentication service</li>
+<li>Core: The core banking system</li>
+<li>Transaction Delivery: Service that sends transactions to Cashbook as they occur in the host system.</li>
+</ul>
+
+
+<h3>How Do We Protect Member Data?</h3>
+
+<p>Secure Sockets Layer (SSL) is used for all communications: User to Cashbook, User to Juno, Cashbook to Juno, and Core system to Cashbook. This protects the data in transit.
+Cashbook Single Sign On (SSO) authentication (via Juno) is done by the OAuth2 protocol. This was used primarily so that Cashbook would have zero knowledge of the login credentials. Moreover Juno does not store the login credentials instead it makes a request to the core system to verify the supplied credentials at every login.</p>
+
+<p><strong>More information on OAuth2:</strong></p>
+
+<ul>
+<li>Background on OAuth: <a href="http://oauth.net/about/">http://oauth.net/about/</a></li>
+<li>Background on OAuth2: <a href="http://hueniverse.com/2010/05/introducing-oauth-2-0/">http://hueniverse.com/2010/05/introducing-oauth-2-0/</a></li>
+<li>Security Considerations for OAuth2: <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-25#section-10">http://tools.ietf.org/html/draft-ietf-oauth-v2-25#section-10</a></li>
+</ul>
+
+
+<h3>Effectively Anonymized Data</h3>
+
+<p>No personally identifiable information sent to Cashbook.</p>
+
+<h3>Risks and How We Handle Them</h3>
+
+<p>Both juno and Cashbook are Rails 3.x applications and use the built-in Cross-Site Request Forgery (XSRF) protection and accepted practices for avoiding SQL injection attacks.</p>
+
+<p>One risk to both Cashbook and Juno is a breach at the operating system level. To help combat this risk, our servers expose minimal services, run firewalls, and require the use ssh keys to access the servers.</p>
+
+<p>Each credit union uses separate databases and virtual machine instances so that a breach in one does not necessarily affect any others.</p>
+
+<p>In the event of a breach on the Cashbook servers, the credit union can revoke either the application&rsquo;s credentials or a set of user credentials (depending on the nature of the breach).</p>
+
+<p>If the application&rsquo;s credentials are canceled, Cashbook would work to rectify the breach and once that has been accomplished, the credit union could issue new credentials for Cashbook.</p>
+
+<p>A breach on the Juno side is a bit more serious, but does not represent a risk to the core banking system due the limited nature of access that Juno requires. If a breach were to occur, we would reset the remote access token in Casbbook to protect user information.</p>
+
+  <br>
+  <br>  
+</div><!-- /col9 -->
+
+<div class="" style="margin-bottom:20px;">
+  
+    <a href="/2012/01/30/Cashbook-now-available" rel="previous" title="Cashbook Hosted PFM now available.">&laquo;&nbsp; Cashbook Hosted PFM now available.</a>
+    
+  
+    <a href="/2013/01/03/mtlehman-cu-cashbook-is-live" rel="next" class="pull-right" title="MLCU Cashbook is live">MLCU Cashbook is live &nbsp;&raquo;</a>
+        
+  <br style="clear:both;"/>
+</div>  
+    
+
+    </div>
+    
+    <!-- === SIDEBAR === -->
+    <div class="col-lg-4 sidebar-zone">
+	  <h6>ABOUT PENNYMINDER</h6>
+	  <p>
+        Pennyminder builds technology solutions for credit unions that empower members 
+        to be smarter with their money.
+      </p><p>
+        Our goal has always been to build and deliver great products at a reasonable price and provide exceptional service to our clients. We know how important your members are to you; we feel the same way about the people who use Pennyminder software products and services.
+      </p>
+      
+	  <br>
+	  <h6>CATEGORIES</h6>
+	  <p>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/pfm/">pfm</a><br/>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/releases/">releases</a><br/>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/cashbook/">cashbook</a><br/>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/security/">security</a><br/>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/featured/">featured</a><br/>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/clientlaunches/">clientlaunches</a><br/>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/press/">press</a><br/>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/awards/">awards</a><br/>
+        
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/development/">development</a><br/>
+        
+	  </p>
+      
+    </div><!-- /col-lg-4 -->
+  </div>  
+</div>
+
+      
+	<!-- Footer Wrap -->
+	<div id="f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<h3>About Pennyminder</h3>
+					<p>
+                      We believe credit unions are the most sustainable, responsible way to bank, 
+                      and we're dedicated to helping you succeed by providing tools and solutions 
+                      to empower your members to manage their finances more easily and to make
+                      better choices about their finances.
+						We're located in Mission British Columbia in the 
+						heart of the Fraser Valley
+                    </p>
+					<p>
+					</p>
+				</div>
+				<div class="col-lg-4">
+                  <h3>Subscribe for updates</h3>
+
+                  <form action="https://madmimi.com/signups/subscribe/100439" id="mad_mimi_signup_form" method="post" target="_blank">
+                    <div class="required">
+                      <input class="required" style="padding:5px;" data-invalid-email="This field is invalid" data-required-field="This field is required" id="signup_email" name="signup[email]" placeholder="you@example.com" type="text"/>&nbsp;
+                      <input class="submit btn btn-default"  style="margin-top:-4px;padding:5px;" data-choose-list="&#8593; Choose a list" data-default-text="Subscribe" data-invalid-text="&#8593; You forgot some required fields" data-submitting-text="Sending..." id="webform_submit_button" name="commit" type="submit" value="Subscribe"/>
+                    </div>
+                  </form>
+
+                  <script type="text/javascript">
+(function() {
+  var form = document.getElementById("mad_mimi_signup_form"),
+      submit = document.getElementById("webform_submit_button"),
+      validEmail = /.+@.+\..+/,
+      isValid;
+      
+  form.onsubmit = function(event) {
+    validate();
+    if(!isValid) {
+      revalidateOnChange();
+      return false;
+    }
+  };
+  
+  function validate() {
+    isValid = true;
+    emailValidation();
+    fieldsValidation();
+    listsValidation();
+    updateFormAfterValidation();
+  }
+
+  function emailValidation() {
+    var email = document.getElementById("signup_email");
+    if(!validEmail.test(email.value)) {
+      errorMessage(email);
+      isValid = false;
+    } else {
+      removeErrorMessage(email);
+    }
+  }
+
+  function fieldsValidation() {
+    for(var i = 0; i < form.elements.length; ++i) {
+      var input = form.elements[i];
+      if(input.id == "signup_email") continue;
+      if(input.className.indexOf("required") >= 0) {
+        if(input.value == "") {
+          errorMessage(input)
+          isValid = false;
+        } else {
+          removeErrorMessage(input);
+        }
+      }
+    }
+  }
+
+  function listsValidation() {
+    var mainListsDiv = document.getElementById("signup_audience_lists");
+    if(mainListsDiv && mainListsDiv.className.indexOf("required") >= 0) {
+      var listSelected = false;
+      for(var i = 0; i < form.elements.length; ++i) {
+        var input = form.elements[i];
+        if(input.type != "checkbox") continue;
+        if(input.checked) listSelected = true;
+      }
+      if(!listSelected) {
+        if(mainListsDiv.className.indexOf("invalid") == -1) mainListsDiv.className += " invalid";
+        isValid = false;
+      } else {
+        mainListsDiv.className = mainListsDiv.className.replace(/ invalid/g, "");
+      }
+    }
+  }
+
+  function errorMessage(input) {
+    input.className   = "required invalid";
+    input.placeholder = input.getAttribute("data-required-field");
+  }
+
+  function removeErrorMessage(input) {
+    input.className   = "required";
+    input.placeholder = "";
+  }
+
+  function updateFormAfterValidation() {
+    form.className = isValid ? "" : "mimi_invalid";
+    submit.value = submitButtonText();
+    submit.disabled = !isValid;
+    submit.className = isValid ? "submit" : "disabled";
+  }
+
+  function submitButtonText() {
+    var text;
+    if(isValid) {
+      text = submit.getAttribute("data-default-text");
+    } else {
+      var allFieldsValid = checkIfAllFieldsAreValid();
+      if(allFieldsValid) {
+        text = submit.getAttribute("data-choose-list");
+      } else {
+        text = submit.getAttribute("data-invalid-text");
+      }
+    }
+    return text;
+  }
+
+  function checkIfAllFieldsAreValid() {
+    var allFieldsValid = true
+    for(var i = 0; i < form.elements.length; ++i) {
+      var input = form.elements[i];
+      if(input.placeholder && input.placeholder.length > 0) allFieldsValid = false;
+    }
+    return allFieldsValid;
+  }
+
+  function revalidateOnChange() {
+    for(var i = 0; i < form.elements.length; ++i) {
+      var input = form.elements[i];
+      if(input.className.indexOf("required") >= 0 || input.type == "checkbox") {
+        input.onchange = validate;
+      }
+    }
+  }
+})();
+</script>
+
+				</div>
+				<div class="col-lg-4 ">
+				  <h3>Call us today</h3>
+				  <p style="font-size:1.6em;">
+					<b>+1 603-604-1741</b>
+                  </p>
+                  <h3>Follow us</h3>
+                  <p style="font-size:3em;">
+					<a href="https://twitter.com/pennyminder"><i class="fa fa-twitter"></i></a>
+					<a href="https://github.com/pennyminder"><i class="fa fa-github"></i></a>
+                  </p>
+				</div>
+			
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- /Footer wrap -->
+	
+	<div id="c">
+	  <div class="container">
+		<div class="pull-right">
+		  <p>&copy Sourdough Labs Research and Development Corp.</p>
+		</div>
+	  </div>
+	</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/js/modernizr.custom.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script>
+    $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    </script>
+	<script>
+	$('.carousel').carousel({
+	  interval: 3500
+	})
+	</script>    
+
+    <script type="text/javascript">     
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1034229-12']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+            
+  </body>
+</html>

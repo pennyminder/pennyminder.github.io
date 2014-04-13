@@ -1,0 +1,36 @@
+---
+layout: index
+title: Pennyminder provides technology solutions for credit unions
+blog: 'yes'
+---
+{% unless num_words %}
+  {% assign num_words = 75 %}
+{% endunless %}
+
+<div class="container">
+  <div class="row main-blog">
+    <div class="col-lg-8">    
+      {{ content }}
+    </div>
+    
+    <!-- === SIDEBAR === -->
+    <div class="col-lg-4 sidebar-zone">
+	  <h6>ABOUT PENNYMINDER</h6>
+	  <p>
+        Pennyminder builds technology solutions for credit unions that empower members 
+        to be smarter with their money.
+      </p><p>
+        Our goal has always been to build and deliver great products at a reasonable price and provide exceptional service to our clients. We know how important your members are to you; we feel the same way about the people who use Pennyminder software products and services.
+      </p>
+      
+	  <br>
+	  <h6>CATEGORIES</h6>
+	  <p>
+        {% for tag in site.tags %}
+        <i class="icon-folder-open-alt"></i>  <a href="/tags/{{ tag | first | slugize }}/">{{ tag | first }}</a><br/>
+        {% endfor %}
+	  </p>
+      
+    </div><!-- /col-lg-4 -->
+  </div>  
+</div>
