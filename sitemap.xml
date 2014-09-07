@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://pennyminder.com/</loc>
     <lastmod>2014-09-06T09:13:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/articles/introducing-cashbook-toolkit</loc>
+    <loc>http://pennyminder.com/articles/introducing-cashbook-toolkit</loc>
     <lastmod>2014-09-06T09:13:18+00:00</lastmod>
   </url>
   
