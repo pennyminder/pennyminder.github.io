@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Articles on Pennyminder </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/articles/index.xml</link>
+    <language>en-us</language>
+    
+    
+    <updated>Sat, 06 Sep 2014 09:13:18 UTC</updated>
+    
+    <item>
+      <title>Introducing Cashbook Toolkit</title>
+      <link>http://localhost:1313/articles/introducing-cashbook-toolkit</link>
+      <pubDate>Sat, 06 Sep 2014 09:13:18 UTC</pubDate>
+      
+      <guid>http://localhost:1313/articles/introducing-cashbook-toolkit</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://cashbooktoolkit.com/&#34;&gt;Cashbook Toolkit&lt;/a&gt; is a set of open source software for building personal finance applications and services. Currently comprised of three different projects which together provide a solid foundation to implement your PFM strategy.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;http://cashbooktoolkit.com/&#34;&gt;project&lt;/a&gt; has it&amp;rsquo;s own website with more details as well as links to the source code and a set of products that complement it.  Please check it out and help spread the word.&lt;/p&gt;
+
+&lt;p&gt;I will be attending the &lt;a href=&#34;http://www.cuwatercooler.com/symposium/&#34;&gt;CU Watercooler Symposium&lt;/a&gt; next week in Austin Texas and would love to start a discussion about credit unions (and banks too) using open source software at their organizations.&lt;/p&gt;
+
+&lt;p&gt;This is a new direction for me and Pennyminder and I am excited to see what people do with the software.  Pennyminder has always been a one person operation and I have realized that I can&amp;rsquo;t do it alone and that it needs your help to make it a success, so grab the source code and start building today!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
